@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Вход</title>
+</head>
+<body>
+<form id="loginForm">
+  <label>Логин: <input type="text" id="login" required></label><br>
+  <label>Пароль: <input type="password" id="password" required></label><br>
+  <button type="submit">Войти</button>
+</form>
+<div id="message" style="color:red; margin-top:10px;"></div>
+
+<script>
+  const users = {
+    users: '12345',
+    admin: 'adminpass'
+  };
+
+  const form = document.getElementById('loginForm');
+  const message = document.getElementById('message');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const login = document.getElementById('login').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (users[login] && users[login] === password) {
+      // Успешный вход — переход на dashboard.html
+      window.location.href = 'dashboard.html';
+    } else {
+      message.textContent = 'Неверный логин или пароль';
+    }
+  });
+</script>
+</body>
+</html>
